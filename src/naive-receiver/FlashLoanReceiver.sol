@@ -11,7 +11,7 @@ contract FlashLoanReceiver is IERC3156FlashBorrower {
     constructor(address _pool) {
         pool = _pool;
     }
-
+    // @audit-issue first address is not concrete, anyone can call a flashloan
     function onFlashLoan(address, address token, uint256 amount, uint256 fee, bytes calldata)
         external
         returns (bytes32)
