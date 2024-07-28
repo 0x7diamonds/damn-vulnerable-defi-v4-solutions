@@ -39,7 +39,7 @@ contract NaiveReceiverPool is Multicall, IERC3156FlashLender {
         if (token != address(weth)) revert UnsupportedCurrency();
         return FIXED_FEE;
     }
-    
+    // @audit-info checkinggg
     function flashLoan(IERC3156FlashBorrower receiver, address token, uint256 amount, bytes calldata data)
         external
         returns (bool)

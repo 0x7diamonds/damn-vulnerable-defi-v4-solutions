@@ -25,7 +25,7 @@ contract FlashLoanReceiver is IERC3156FlashBorrower {
         }
 
         if (token != address(NaiveReceiverPool(pool).weth())) revert NaiveReceiverPool.UnsupportedCurrency();
-
+        
         uint256 amountToBeRepaid;
         unchecked {
             amountToBeRepaid = amount + fee;
