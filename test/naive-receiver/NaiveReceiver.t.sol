@@ -82,7 +82,7 @@ contract NaiveReceiverChallenge is Test {
         // const ETH = await pool.ETH();
         // for(let i = 0; i < 10; i++){
         //     await pool.connect(player).flashLoan(receiver.address, ETH, 0, "0x");
-        // 
+        // @audit-info hardhat to foundry
     }
 
     /**
