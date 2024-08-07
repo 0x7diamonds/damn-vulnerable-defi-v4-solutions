@@ -88,6 +88,7 @@ contract NaiveReceiverChallenge is Test {
             receiverPool.onFlashLoan(player, address(weth), 0, 1, "");
         }
         weth.transfer(address(recovery), WETH_IN_POOL + WETH_IN_RECEIVER);
+        //demo
 
     }
 
