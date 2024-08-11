@@ -51,7 +51,9 @@ contract TrusterChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_truster() public checkSolvedByPlayer {
-        
+        pool.flashLoan(TOKENS_IN_POOL, payable(player), address(pool), "0x");
+        token.transfer(recovery, TOKENS_IN_POOL);
+        // commit
     }
 
     /**
