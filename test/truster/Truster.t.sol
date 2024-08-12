@@ -16,6 +16,7 @@ contract TrusterChallenge is Test {
 
     DamnValuableToken public token;
     TrusterLenderPool public pool;
+    AttackTruster attacker;
 
     modifier checkSolvedByPlayer() {
         vm.startPrank(player, player);
@@ -52,7 +53,8 @@ contract TrusterChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_truster() public checkSolvedByPlayer {
-        
+        attacker = new AttackTruster();
+        attacker.attack(token, pool);
     }
 
     /**
