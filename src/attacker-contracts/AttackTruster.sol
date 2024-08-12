@@ -6,6 +6,9 @@ import "../truster/TrusterLenderPool.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract AttackTruster {
-    TrusterLenderPool public pool;
-    IERC20 public token;
+    function attack(IERC20 token, TrusterLenderPool pool) public {
+        uint256 poolBalance = token.balanceOf(address(pool));
+
+        
+    }
 }
