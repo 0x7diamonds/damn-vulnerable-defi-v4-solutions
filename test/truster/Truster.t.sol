@@ -55,6 +55,7 @@ contract TrusterChallenge is Test {
     function test_truster() public checkSolvedByPlayer {
         attacker = new AttackTruster();
         attacker.attack(token, pool);
+        // error
     }
 
     /**
