@@ -51,7 +51,7 @@ contract TrusterChallenge is Test {
     /**
      * CODE YOUR SOLUTION HERE
      */
-    // @audit-info done
+    // @audit-info Done
     function test_truster() public checkSolvedByPlayer {
         bytes memory data = abi.encodeWithSignature("approve(address,uint256)", player, TOKENS_IN_POOL);
 
