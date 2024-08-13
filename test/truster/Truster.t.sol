@@ -5,13 +5,12 @@ pragma solidity =0.8.25;
 import {Test, console} from "forge-std/Test.sol";
 import {DamnValuableToken} from "../../src/DamnValuableToken.sol";
 import {TrusterLenderPool} from "../../src/truster/TrusterLenderPool.sol";
-import {AttackTruster} from "../../src/attacker-contracts/AttackTruster.sol";
 
 contract TrusterChallenge is Test {
     address deployer = makeAddr("deployer");
     address player = makeAddr("player");
     address recovery = makeAddr("recovery");
-    AttackTruster public attacker;
+    
     
     uint256 constant TOKENS_IN_POOL = 1_000_000e18;
 
@@ -53,9 +52,7 @@ contract TrusterChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_truster() public checkSolvedByPlayer {
-        attacker = new AttackTruster();
-        attacker.attack(token, pool);
-        // error
+        bytes memory data = abi.encodeWithSignature("approve(address,uint256", player, TOKENS_IN_POOL);
     }
 
     /**

