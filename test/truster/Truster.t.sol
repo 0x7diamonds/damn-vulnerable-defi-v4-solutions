@@ -11,12 +11,12 @@ contract TrusterChallenge is Test {
     address deployer = makeAddr("deployer");
     address player = makeAddr("player");
     address recovery = makeAddr("recovery");
+    AttackTruster public attacker;
     
     uint256 constant TOKENS_IN_POOL = 1_000_000e18;
 
     DamnValuableToken public token;
     TrusterLenderPool public pool;
-    AttackTruster attacker;
 
     modifier checkSolvedByPlayer() {
         vm.startPrank(player, player);
