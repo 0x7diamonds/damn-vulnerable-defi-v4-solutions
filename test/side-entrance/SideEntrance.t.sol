@@ -49,6 +49,8 @@ contract SideEntranceChallenge is Test {
         AttackSideEntrance attacker;
         attacker = new AttackSideEntrance(address(pool));
         attacker.attack();
+        
+        
     }
 
     /**

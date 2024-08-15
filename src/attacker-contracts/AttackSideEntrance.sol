@@ -2,6 +2,7 @@
  pragma solidity 0.8.25;
 
  import "../side-entrance/SideEntranceLenderPool.sol";
+ import {SafeTransferLib} from "solady/utils/SafeTransferLib.sol";
 
  contract AttackSideEntrance {
     SideEntranceLenderPool pool;
