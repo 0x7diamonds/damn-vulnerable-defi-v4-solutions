@@ -15,14 +15,14 @@ contract SideEntranceLenderPool {
 
     event Deposit(address indexed who, uint256 amount);
     event Withdraw(address indexed who, uint256 amount);
-
+    // @audit-info secured
     function deposit() external payable {
         unchecked {
             balances[msg.sender] += msg.value;
         }
         emit Deposit(msg.sender, msg.value);
     }
-    // @audit-info withdraw 
+    // @audit-info secured
     function withdraw() external {
         uint256 amount = balances[msg.sender];
 
@@ -31,7 +31,7 @@ contract SideEntranceLenderPool {
 
         SafeTransferLib.safeTransferETH(msg.sender, amount);
     }
-
+    // @audit-issue side-entrance
     function flashLoan(uint256 amount) external {
         uint256 balanceBefore = address(this).balance;
 
