@@ -24,7 +24,6 @@
     }
 
     function transfer(address recipient, uint256 amount) external payable {
-        amount = address(this).balance;
         SafeTransferLib.safeTransferETH(recipient, amount);
     }
  }
