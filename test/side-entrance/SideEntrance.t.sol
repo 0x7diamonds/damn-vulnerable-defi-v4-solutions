@@ -4,6 +4,7 @@ pragma solidity =0.8.25;
 
 import {Test, console} from "forge-std/Test.sol";
 import {SideEntranceLenderPool} from "../../src/side-entrance/SideEntranceLenderPool.sol";
+import {AttackSideEntrance} from "../../src/attacker-contracts/AttackSideEntrance.sol";
 
 contract SideEntranceChallenge is Test {
     address deployer = makeAddr("deployer");
