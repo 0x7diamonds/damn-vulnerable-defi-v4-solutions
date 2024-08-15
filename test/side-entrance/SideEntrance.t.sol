@@ -48,6 +48,7 @@ contract SideEntranceChallenge is Test {
     function test_sideEntrance() public checkSolvedByPlayer {
         AttackSideEntrance attacker;
         attacker = new AttackSideEntrance(address(pool));
+        attacker.attack();
     }
 
     /**
