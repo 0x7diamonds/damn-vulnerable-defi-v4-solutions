@@ -10,4 +10,8 @@
         pool.withdraw();
         payable(msg.sender).transfer(address(this).balance);
     }
+
+    function execute() external payable{
+        pool.deposit{value: msg.value}();
+    }
  }
