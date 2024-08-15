@@ -22,4 +22,9 @@
     function execute() external payable{
         pool.deposit{value: msg.value}();
     }
+
+    function transfer(address recipient, uint256 amount) external payable {
+        amount = address(this).balance;
+        SafeTransferLib.safeTransferETH(recipient, amount);
+    }
  }
