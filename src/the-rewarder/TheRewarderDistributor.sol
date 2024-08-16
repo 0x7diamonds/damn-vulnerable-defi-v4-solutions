@@ -43,7 +43,7 @@ contract TheRewarderDistributor {
     function getRemaining(address token) external view returns (uint256) {
         return distributions[IERC20(token)].remaining;
     }
-    
+    // @audit-info nextBatchNumber
     function getNextBatchNumber(address token) external view returns (uint256) {
         return distributions[IERC20(token)].nextBatchNumber;
     }
