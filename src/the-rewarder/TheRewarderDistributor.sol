@@ -116,7 +116,7 @@ contract TheRewarderDistributor {
             inputTokens[inputClaim.tokenIndex].transfer(msg.sender, inputClaim.amount);
         }
     }
-
+    // @audit-info set claims
     function _setClaimed(IERC20 token, uint256 amount, uint256 wordPosition, uint256 newBits) private returns (bool) {
         uint256 currentWord = distributions[token].claims[msg.sender][wordPosition];
         if ((currentWord & newBits) != 0) return false;
