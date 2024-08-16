@@ -39,11 +39,11 @@ contract TheRewarderDistributor {
     error NotEnoughTokensToDistribute();
 
     event NewDistribution(IERC20 token, uint256 batchNumber, bytes32 newMerkleRoot, uint256 totalAmount);
-
+    // @audit-info remaining
     function getRemaining(address token) external view returns (uint256) {
         return distributions[IERC20(token)].remaining;
     }
-
+    
     function getNextBatchNumber(address token) external view returns (uint256) {
         return distributions[IERC20(token)].nextBatchNumber;
     }
