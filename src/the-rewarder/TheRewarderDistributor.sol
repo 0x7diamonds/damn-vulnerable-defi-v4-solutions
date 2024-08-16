@@ -76,7 +76,7 @@ contract TheRewarderDistributor {
             }
         }
     }
-
+    // @audit-info claims
     // Allow claiming rewards of multiple tokens in a single transaction
     function claimRewards(Claim[] memory inputClaims, IERC20[] memory inputTokens) external {
         Claim memory inputClaim;
