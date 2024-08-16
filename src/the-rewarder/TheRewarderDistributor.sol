@@ -67,7 +67,7 @@ contract TheRewarderDistributor {
 
         emit NewDistribution(token, batchNumber, newRoot, amount);
     }
-    // @audit-info claoms
+    // @audit-info clean 
     function clean(IERC20[] calldata tokens) external {
         for (uint256 i = 0; i < tokens.length; i++) {
             IERC20 token = tokens[i];
