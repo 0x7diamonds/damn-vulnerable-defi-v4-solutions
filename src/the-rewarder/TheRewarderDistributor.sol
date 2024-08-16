@@ -47,7 +47,7 @@ contract TheRewarderDistributor {
     function getNextBatchNumber(address token) external view returns (uint256) {
         return distributions[IERC20(token)].nextBatchNumber;
     }
-
+    // @audit-info roots
     function getRoot(address token, uint256 batchNumber) external view returns (bytes32) {
         return distributions[IERC20(token)].roots[batchNumber];
     }
