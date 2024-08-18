@@ -39,7 +39,7 @@ contract TheRewarderDistributor {
     error NotEnoughTokensToDistribute();
 
     event NewDistribution(IERC20 token, uint256 batchNumber, bytes32 newMerkleRoot, uint256 totalAmount);
-    // @audit-info remaining
+    // @audit-info remaining of IERC20 token pool
     function getRemaining(address token) external view returns (uint256) {
         return distributions[IERC20(token)].remaining;
     }
@@ -62,7 +62,7 @@ contract TheRewarderDistributor {
         uint256 batchNumber = distributions[token].nextBatchNumber;
         distributions[token].roots[batchNumber] = newRoot;
         distributions[token].nextBatchNumber++;
-
+        // @audit-issue msg.sender? does anyone outside the beneficiary list could also claim?
         SafeTransferLib.safeTransferFrom(address(token), msg.sender, address(this), amount);
 
         emit NewDistribution(token, batchNumber, newRoot, amount);
