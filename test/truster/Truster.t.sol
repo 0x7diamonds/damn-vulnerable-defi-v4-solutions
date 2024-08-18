@@ -5,7 +5,7 @@ pragma solidity =0.8.25;
 import {Test, console} from "forge-std/Test.sol";
 import {DamnValuableToken} from "../../src/DamnValuableToken.sol";
 import {TrusterLenderPool} from "../../src/truster/TrusterLenderPool.sol";
-
+import {AttackTruster} from "../../src/attacker-contracts/AttackTruster.sol";
 contract TrusterChallenge is Test {
     address deployer = makeAddr("deployer");
     address player = makeAddr("player");
@@ -53,6 +53,7 @@ contract TrusterChallenge is Test {
      */
     // @audit-info Done
     function test_truster() public checkSolvedByPlayer {
+        AttackTruster AttackTruster = new AttackTruster(address(token), address(pool), address(recovery));
         
         // done
         
