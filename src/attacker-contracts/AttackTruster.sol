@@ -14,4 +14,11 @@ contract AttackTruster {
         pool = TrusterLenderPool(_pool);
         recovery = _recovery;
     }
+
+    function attack() external {
+        require(
+            poolflashLoan
+            ()
+        )
+    }
 }
