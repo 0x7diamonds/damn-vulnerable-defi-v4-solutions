@@ -14,7 +14,7 @@ contract AttackTruster {
         pool = TrusterLenderPool(_pool);
         recovery = _recovery;
     }
-
+    // @audit-ok solved
     function attack() external returns(bool){
         uint amount = token.balanceOf(address(pool));
         require(
