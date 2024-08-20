@@ -7,7 +7,7 @@
  contract AttackSideEntrance {
     SideEntranceLenderPool pool;
     address public recovery;
-    uint256 public amount;
+    uint256 public amountToAttack;
 
     constructor(address _pool, address _recovery, address _amount) {
         pool = new SideEntranceLenderPool(_pool);
@@ -16,5 +16,6 @@
     }
 
     function attack() external returns(bool) {
-        uint256 = ba
+        uint
     }
+ }
