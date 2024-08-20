@@ -9,10 +9,10 @@
     address public recovery;
     uint256 public amountToAttack;
 
-    constructor(address _pool, address _recovery, address _amount) {
+    constructor(address _pool, address _recovery, uint256 _amount) {
         pool = new SideEntranceLenderPool(_pool);
         recovery = _recovery;
-        amount = _amount;
+        amountToAttack = _amount;
     }
 
     function attack() external returns(bool) {
