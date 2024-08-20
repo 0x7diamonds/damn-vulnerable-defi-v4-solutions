@@ -9,5 +9,6 @@
 
     constructor(address _pool, address _recovery, address _amount) {
         pool = new SideEntranceLenderPool(_pool);
+        recovery = _recovery;
         
     }
