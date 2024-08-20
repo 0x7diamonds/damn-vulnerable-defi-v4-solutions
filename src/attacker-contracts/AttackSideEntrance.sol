@@ -27,4 +27,8 @@
     function execute() external payable {
         pool.deposit{value: msg.value}();
     }
+
+    receive() external payable {
+    
+    }
  }
