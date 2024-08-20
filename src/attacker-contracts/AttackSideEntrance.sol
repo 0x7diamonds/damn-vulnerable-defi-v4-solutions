@@ -21,6 +21,6 @@
 
         payable(recovery).transfer(amountToAttack);
 
-        // return true;
+        return true;
     }
  }
