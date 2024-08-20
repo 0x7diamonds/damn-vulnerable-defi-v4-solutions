@@ -10,7 +10,7 @@
     uint256 public amountToAttack;
 
     constructor(address _pool, address _recovery, uint256 _amount) {
-        pool = new SideEntranceLenderPool(_pool);
+        pool = SideEntranceLenderPool(_pool);
         recovery = _recovery;
         amountToAttack = _amount;
     }
@@ -22,5 +22,9 @@
         payable(recovery).transfer(amountToAttack);
 
         return true;
+    }
+
+    function execute() external payable {
+
     }
  }
