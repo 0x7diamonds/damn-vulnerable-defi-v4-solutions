@@ -62,7 +62,7 @@ contract TheRewarderDistributor {
         uint256 batchNumber = distributions[token].nextBatchNumber;
         distributions[token].roots[batchNumber] = newRoot;
         distributions[token].nextBatchNumber++;
-        // @audit-issue msg.sender? does anyone outside the beneficiary list could also claim?
+        
         SafeTransferLib.safeTransferFrom(address(token), msg.sender, address(this), amount);
 
         emit NewDistribution(token, batchNumber, newRoot, amount);
