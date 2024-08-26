@@ -53,6 +53,7 @@ contract TheRewarderDistributor {
     }
     // @audit-info distributions
     //test
+    // test
     function createDistribution(IERC20 token, bytes32 newRoot, uint256 amount) external {
         if (amount == 0) revert NotEnoughTokensToDistribute();
         if (newRoot == bytes32(0)) revert InvalidRoot();
