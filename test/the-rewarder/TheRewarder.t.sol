@@ -160,6 +160,7 @@ contract TheRewarderChallenge is Test {
         bytes32[] memory wethLeaves = _loadRewards(
             "/test/the-rewarder/weth-distribution.json"
         );
+        
         uint dvtTxCount = TOTAL_DVT_DISTRIBUTION_AMOUNT /
             PLAYER_DVT_CLAIM_AMOUNT;
         uint wethTxCount = TOTAL_WETH_DISTRIBUTION_AMOUNT /
