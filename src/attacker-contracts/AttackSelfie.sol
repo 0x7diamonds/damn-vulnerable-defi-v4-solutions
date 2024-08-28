@@ -39,11 +39,11 @@ contract AttackSelfie is IERC3156FlashBorrower {
         address _governance,
         address _token,
         address _player
-    ) [
-        pool = IPool(_pool),
+    ) {
+        pool = IPool(_pool);
         governance = IGovernance(_governance),
         token = IERC20Snapshot(_token),
         player = _player
-    ]
+    }
 
 }
