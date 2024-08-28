@@ -150,6 +150,9 @@ contract TheRewarderChallenge is Test {
     function test_theRewarder() public checkSolvedByPlayer {
         uint PLAYER_DVT_CLAIM_AMOUNT = 1e16;
         uint PLAYER_WETH_CLAIM_AMOUNT = 1e15;
+
+        console.log('address(player)');
+        console.log(address(player));
     }
 
     /**
