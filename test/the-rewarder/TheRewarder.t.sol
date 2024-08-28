@@ -165,7 +165,12 @@ contract TheRewarderChallenge is Test {
         uint wethTxCount = TOTAL_WETH_DISTRIBUTION_AMOUNT /
             PLAYER_WETH_CLAIM_AMOUNT;
         uint totalTxCount = dvtTxCount + wethTxCount;   
-        
+
+         IERC20[] memory tokensToClaim = new IERC20[](2);
+         tokensToClaim[0] = IERC20(address(dvt));
+         tokensToClaim[1] = IERC20(address(weth));
+
+         
          
     }
 
