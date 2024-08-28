@@ -16,8 +16,11 @@ interface IPool {
 
 interface IGovernance {
     function queueAction(
-        
-    );
+        address target,
+        uint128 value,
+        bytes calldata data
+    ) externa;
+    function getActionCounter() external returns (uint256);
 }
 
 contract AttackSelfie {
