@@ -68,5 +68,11 @@ contract AttackSelfie is IERC3156FlashBorrower {
         uint256 _amount,
         uint256,
         bytes calldata data
-    ) external returns (bytes32) {}
+    ) external returns (bytes32) {
+
+        require(msg.sender == address(pool), "msg.sender is no pool" );
+        require(tx.origin == player, "tx.origin is not player");
+
+        
+    }
 }
