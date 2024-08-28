@@ -34,4 +34,13 @@ contract AttackSelfie is IERC3156FlashBorrower {
     address public player;
     uint256 public amount = 1500000 ether;
 
+    constructor(
+        address _pool,
+        address _governance,
+        address _token,
+        address _player
+    ) [
+        pool = IPool(_pool),
+    ]
+
 }
