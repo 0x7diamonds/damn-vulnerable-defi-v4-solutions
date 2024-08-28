@@ -28,6 +28,7 @@ interface IERC20Snapshot is IERC20 {
 }
 
 contract AttackSelfie is IERC3156FlashBorrower {
+    
     IPool public pool;
     IGovernance public governance;
     IERC20Snapshot public token;
