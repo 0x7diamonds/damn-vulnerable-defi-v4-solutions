@@ -148,12 +148,15 @@ contract TheRewarderChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_theRewarder() public checkSolvedByPlayer {
-        
+        uint PLAYER_DVT_CLAIM_AMOUNT = 1e16;
+        uint PLAYER_WETH_CLAIM_AMOUNT = 1e15;
     }
 
     /**
      * CHECKS SUCCESS CONDITIONS - DO NOT TOUCH
      */
+
+
     function _isSolved() private view {
         // Player saved as much funds as possible, perhaps leaving some dust
         assertLt(dvt.balanceOf(address(distributor)), 1e16, "Too much DVT in distributor");
