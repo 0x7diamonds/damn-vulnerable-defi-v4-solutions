@@ -157,9 +157,9 @@ contract TheRewarderChallenge is Test {
         bytes32[] memory dvtLeaves = _loadRewards(
             "/test/the-rewarder/dvt-distribution.json"
         );
-        // bytes32[] memory wethLeaves = _loadRewards(
-        //     "/test/the-rewarder/weth-distribution.json"
-        // );
+        bytes32[] memory wethLeaves = _loadRewards(
+            "/test/the-rewarder/weht-distribution.json"
+        );
     }
 
     /**
