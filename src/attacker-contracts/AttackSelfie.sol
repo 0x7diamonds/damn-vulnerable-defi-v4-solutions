@@ -2,8 +2,8 @@
 
 pragma solidity =0.8.25;
 
-import "../selfie/SelfiePool.sol";
-import "../selfie/SimpleGovernance.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
 
 contract AttackSelfie {
     
