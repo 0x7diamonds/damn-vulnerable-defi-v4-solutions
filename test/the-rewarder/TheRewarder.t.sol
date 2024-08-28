@@ -173,6 +173,9 @@ contract TheRewarderChallenge is Test {
          // Create Alice's claims
          Claim[] memory claims = new Claim[](totalTxCount);
          
+         for (uint i = 0; i < dvtTxCount; i++) {
+             
+         }
     }
 
     /**
