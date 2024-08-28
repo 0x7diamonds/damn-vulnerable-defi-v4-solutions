@@ -148,7 +148,7 @@ contract TheRewarderChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_theRewarder() public checkSolvedByPlayer {
-        uint PLAYER_DVT_CLAIM_AMOUNT = 111524763827831882;
+        uint PLAYER_DVT_CLAIM_AMOUNT = 11524763827831882;
         uint PLAYER_WETH_CLAIM_AMOUNT = 1171088749244340;
 
         console.log('address(player)');
@@ -186,7 +186,7 @@ contract TheRewarderChallenge is Test {
                  claims[i] = Claim({
                      batchNumber: 0, // claim corresponds to first WETH batch
                      amount: PLAYER_WETH_CLAIM_AMOUNT,
-                     tokenIndex: 1, // claim corresponds to second token in `tokensToClaim` array
+                     tokenIndex: 1, // claim corresponds to first token in `tokensToClaim` array
                      proof: merkle.getProof(wethLeaves, 188) // Alice's address is at index 2
                  });
              }
