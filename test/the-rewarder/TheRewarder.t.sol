@@ -160,7 +160,7 @@ contract TheRewarderChallenge is Test {
         bytes32[] memory wethLeaves = _loadRewards(
             "/test/the-rewarder/weth-distribution.json"
         );
-        
+
         uint dvtTxCount = TOTAL_DVT_DISTRIBUTION_AMOUNT /
             PLAYER_DVT_CLAIM_AMOUNT;
         uint wethTxCount = TOTAL_WETH_DISTRIBUTION_AMOUNT /
@@ -180,14 +180,14 @@ contract TheRewarderChallenge is Test {
                      batchNumber: 0, // claim corresponds to first DVT batch
                      amount: PLAYER_DVT_CLAIM_AMOUNT,
                      tokenIndex: 0, // claim corresponds to first token in `tokensToClaim` array
-                     proof: merkle.getProof(dvtLeaves, 2) // Alice's address is at index 2
+                     proof: merkle.getProof(dvtLeaves, 188) // Alice's address is at index 2
                  });
              } else {
                  claims[i] = Claim({
                      batchNumber: 0, // claim corresponds to first WETH batch
                      amount: PLAYER_WETH_CLAIM_AMOUNT,
                      tokenIndex: 1, // claim corresponds to second token in `tokensToClaim` array
-                     proof: merkle.getProof(wethLeaves, 2) // Alice's address is at index 2
+                     proof: merkle.getProof(wethLeaves, 188) // Alice's address is at index 2
                  });
              }
          }
