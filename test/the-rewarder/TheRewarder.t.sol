@@ -170,7 +170,8 @@ contract TheRewarderChallenge is Test {
          tokensToClaim[0] = IERC20(address(dvt));
          tokensToClaim[1] = IERC20(address(weth));
 
-         
+         // Create Alice's claims
+         Claim[] memory claims = new Claim[](totalTxCount);
          
     }
 
