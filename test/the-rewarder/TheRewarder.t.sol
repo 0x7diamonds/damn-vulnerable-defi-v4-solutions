@@ -190,6 +190,8 @@ contract TheRewarderChallenge is Test {
                  });
              }
          }
+
+         distributor.claimRewards(inputClaims: claims, inputTokens: tokensToClaim);
     }
 
     /**
