@@ -14,6 +14,12 @@ interface IPool {
     ) external returns (bool);
 }
 
+interface IGovernance {
+    function queueAction(
+        
+    );
+}
+
 contract AttackSelfie {
     
 }
