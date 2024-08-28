@@ -27,6 +27,7 @@ interface IERC20Snapshot is IERC20 {
     function snapshot() external returns(uint256);
 }
 
-contract AttackSelfie {
+contract AttackSelfie is IERC3156FlashBorrower {
     
+
 }
