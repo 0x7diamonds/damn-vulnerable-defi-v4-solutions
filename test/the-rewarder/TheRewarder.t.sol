@@ -164,7 +164,9 @@ contract TheRewarderChallenge is Test {
             PLAYER_DVT_CLAIM_AMOUNT;
         uint wethTxCount = TOTAL_WETH_DISTRIBUTION_AMOUNT /
             PLAYER_WETH_CLAIM_AMOUNT;
-        uint totalTxCount = dvtTxCount + wethTxCount;    
+        uint totalTxCount = dvtTxCount + wethTxCount;   
+        
+         
     }
 
     /**
