@@ -191,7 +191,7 @@ contract TheRewarderChallenge is Test {
              }
          }
 
-         distributor.claimRewards(inputClaims: claims, inputTokens: tokensToClaim);
+         distributor.claimRewards({inputClaims: claims, inputTokens: tokensToClaim});
     }
 
     /**
