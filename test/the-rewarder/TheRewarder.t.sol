@@ -174,7 +174,9 @@ contract TheRewarderChallenge is Test {
          Claim[] memory claims = new Claim[](totalTxCount);
          
          for (uint i = 0; i < dvtTxCount; i++) {
-             
+             if (i < dvtTxCount) {
+                 
+             }
          }
     }
 
