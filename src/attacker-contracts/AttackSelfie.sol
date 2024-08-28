@@ -19,7 +19,7 @@ interface IGovernance {
         address target,
         uint128 value,
         bytes calldata data
-    ) externa;
+    ) external returns (uint256 actionId);
     function getActionCounter() external returns (uint256);
 }
 
