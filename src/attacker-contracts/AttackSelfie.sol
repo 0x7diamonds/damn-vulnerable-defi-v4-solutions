@@ -31,5 +31,7 @@ contract AttackSelfie is IERC3156FlashBorrower {
     IPool public pool;
     IGovernance public governance;
     IERC20Snapshot public token;
+    address public player;
+    uint256 public amount = 1500000 ether;
 
 }
