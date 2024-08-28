@@ -148,7 +148,7 @@ contract TheRewarderChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_theRewarder() public checkSolvedByPlayer {
-        uint PLAYER_DVT_CLAIM_AMOUNT = 1e16;
+        uint PLAYER_DVT_CLAIM_AMOUNT = 111524763827831882;
         uint PLAYER_WETH_CLAIM_AMOUNT = 1e15;
 
         console.log('address(player)');
