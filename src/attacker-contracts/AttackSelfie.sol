@@ -73,6 +73,6 @@ contract AttackSelfie is IERC3156FlashBorrower {
         require(msg.sender == address(pool), "msg.sender is no pool" );
         require(tx.origin == player, "tx.origin is not player");
 
-        
+        uint256 id = token.snapshot()
     }
 }
