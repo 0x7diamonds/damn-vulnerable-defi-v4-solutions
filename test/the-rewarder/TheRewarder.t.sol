@@ -175,7 +175,13 @@ contract TheRewarderChallenge is Test {
          
          for (uint i = 0; i < dvtTxCount; i++) {
              if (i < dvtTxCount) {
-                 
+                 claims[i] = Claim({
+                     batchNumber: 0, // claim corresponds to first DVT batch
+                     amount: PLAYER_DVT_CLAIM_AMOUNT,
+                     tokenIndex: 0, // claim corresponds to first token in `tokensToClaim` array
+                     proof: merkle.getProof(dvtLeaves, 2) // Alice's address is at index 2
+                 });
+             }
              }
          }
     }
