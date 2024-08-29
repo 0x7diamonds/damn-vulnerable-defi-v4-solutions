@@ -63,5 +63,7 @@ contract AttackSelfie is IERC3156FlashBorrower {
 
     function attackeCloseup() external returns(bool) {
         bytes memory resultData = governance.executeAction(actionId);
+
+        return true;
     }
 }
