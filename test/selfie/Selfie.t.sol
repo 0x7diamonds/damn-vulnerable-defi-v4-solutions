@@ -64,6 +64,11 @@ contract SelfieChallenge is Test {
      */
     function test_selfie() public checkSolvedByPlayer {
         AttackSelfie attacker = new AttackSelfie(address(pool), address(governance), address(token));
+
+        // Deploy attacker's contract
+        attacker.attackSetup(recovery);
+        vm.warp(block.timestamp + 2 days);
+        attacker.att
     }
 
     /**
