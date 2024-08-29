@@ -20,6 +20,7 @@ interface IGovernance {
         uint128 value,
         bytes calldata data
     ) external returns (uint256 actionId);
+    
     function getActionCounter() external returns (uint256);
 }
 
