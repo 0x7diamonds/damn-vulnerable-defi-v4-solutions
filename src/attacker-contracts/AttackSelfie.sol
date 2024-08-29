@@ -48,5 +48,8 @@ contract AttackSelfie is IERC3156FlashBorrower {
         IERC20(token).approve(address(pool), amount + fee);
         return CALLBACK_SUCCESS;
     }
-    
+
+    function attackSetup(address recovery) external returns(bool) {
+        
+    }
 }
