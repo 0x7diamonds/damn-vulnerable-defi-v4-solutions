@@ -6,6 +6,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {DamnValuableVotes} from "../../src/DamnValuableVotes.sol";
 import {SimpleGovernance} from "../../src/selfie/SimpleGovernance.sol";
 import {SelfiePool} from "../../src/selfie/SelfiePool.sol";
+import {AttackSelfie} from "../../src/attacker-contracts/AttackSelfie.sol";
 
 contract SelfieChallenge is Test {
     address deployer = makeAddr("deployer");
