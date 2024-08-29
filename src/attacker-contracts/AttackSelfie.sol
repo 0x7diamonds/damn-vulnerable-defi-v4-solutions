@@ -25,7 +25,7 @@ contract AttackSelfie is IERC3156FlashBorrower {
     ) {
         pool = SelfiePool(_selfiePool);
         governance = SimpleGovernance(_governance);
-        damnValueToken = DamnValuableVotes(_token);
+        damnValuableToken = DamnValuableVotes(_token);
     }
 
     function onFlashLoan(
