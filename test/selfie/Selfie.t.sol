@@ -71,7 +71,7 @@ contract SelfieChallenge is Test {
         );
 
         attacker.attack();
-        vm.warp
+        vm.warp(block.timestamp + 2);
     }
 
     /**
