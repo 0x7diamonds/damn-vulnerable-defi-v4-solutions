@@ -50,6 +50,8 @@ contract AttackSelfie is IERC3156FlashBorrower {
     }
 
     function attackSetup(address recovery) external returns(bool) {
+        uint amountRequired = 1500000 ether;
+        bytes memory data = abi.encodeWithSignature("emergencyExit(address)", recovery);
         
     }
 }
