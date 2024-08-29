@@ -16,5 +16,5 @@ contract AttackSelfie is IERC3156FlashBorrower {
     DamnValuableVotes damnValueToken;
     uint actionId;
 
-    bytes private constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
+    bytes32 private constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
 }
