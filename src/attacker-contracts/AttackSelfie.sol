@@ -27,4 +27,14 @@ contract AttackSelfie is IERC3156FlashBorrower {
         governance = SimpleGovernance(_governance);
         damnValueToken = DamnValuableVotes(_token);
     }
+
+    function onFlashLoan(
+        address initiator,
+        address token,
+        uint256 amount,
+        uint256 fee,
+        bytes calldata data
+    ) external returns (bytes32) {
+        
+    }
 }
