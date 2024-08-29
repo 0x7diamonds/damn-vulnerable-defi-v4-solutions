@@ -68,7 +68,7 @@ contract SelfieChallenge is Test {
         // Deploy attacker's contract
         attacker.attackSetup(recovery);
         vm.warp(block.timestamp + 2 days);
-        attacker.att
+        attacker.attackCloseup();
     }
 
     /**
