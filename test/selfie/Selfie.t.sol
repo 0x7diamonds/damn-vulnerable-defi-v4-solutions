@@ -70,8 +70,12 @@ contract SelfieChallenge is Test {
             player
         );
 
-        vm.warp(block.timestamp + 2);
         attacker.attack();
+
+        uint256 ACTION_DELAY = 2 days + 1 seconds;
+        vm.warp(block.timestamp + ACTION_DELAY);
+
+        governance.executeAction(1);
     }
 
     /**
