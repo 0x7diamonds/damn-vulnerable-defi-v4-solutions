@@ -17,4 +17,12 @@ contract AttackSelfie is IERC3156FlashBorrower {
     uint actionId;
 
     bytes32 private constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
+
+    constructor(
+        address _selfiePool,
+        address _governance,
+        address _token
+    ) {
+        
+    }
 }
