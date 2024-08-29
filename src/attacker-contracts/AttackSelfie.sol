@@ -23,6 +23,8 @@ contract AttackSelfie is IERC3156FlashBorrower {
         address _governance,
         address _token
     ) {
-        
+        SelfiePool = SelfiePool(_selfiePool);
+        governance = SimpleGovernance(_governance);
+        damnValueToken = DamnValuableVotes(_token);
     }
 }
