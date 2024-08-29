@@ -63,7 +63,8 @@ contract SelfieChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_selfie() public checkSolvedByPlayer {
-        AttackSelfie attacker = new AttackSelfie()
+        AttackSelfie attacker = new AttackSelfie(pool, governance, token);
+        
     }
 
     /**
