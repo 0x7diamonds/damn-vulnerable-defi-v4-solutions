@@ -8,3 +8,9 @@ import {SelfiePool} from "../../src/selfie/SelfiePool.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {IERC3156FlashBorrower} from "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
 import {DamnValuableToken} from "../../src/DamnValuableToken.sol";
+
+contract AttackSelfie is IERC3156FlashBorrower {
+
+    SelfiePool pool;
+    SimpleGovernance governance;
+}
