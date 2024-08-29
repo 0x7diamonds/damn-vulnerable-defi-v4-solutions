@@ -15,4 +15,6 @@ contract AttackSelfie is IERC3156FlashBorrower {
     SimpleGovernance governance;
     DamnValuableVotes damnValueToken;
     uint actionId;
+
+    bytes private constant CALLBACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
 }
