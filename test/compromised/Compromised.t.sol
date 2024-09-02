@@ -93,5 +93,5 @@ contract CompromisedChallenge is Test {
 
         // NFT price didn't change
         assertEq(oracle.getMedianPrice("DVNFT"), INITIAL_NFT_PRICE);
-    } // test
+    } // test...ß
 }
