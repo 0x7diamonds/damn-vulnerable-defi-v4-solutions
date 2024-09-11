@@ -51,7 +51,7 @@ contract PuppetPool is ReentrancyGuard {
 
         emit Borrowed(msg.sender, recipient, depositRequired, amount);
     }
-
+    // @audit-info Have to deposit twice amount of tokens that user wants to borrow
     function calculateDepositRequired(uint256 amount) public view returns (uint256) {
         return amount * _computeOraclePrice() * DEPOSIT_FACTOR / 10 ** 18;
     }

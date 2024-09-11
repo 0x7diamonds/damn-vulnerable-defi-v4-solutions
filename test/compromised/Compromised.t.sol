@@ -9,7 +9,7 @@ import {TrustfulOracle} from "../../src/compromised/TrustfulOracle.sol";
 import {TrustfulOracleInitializer} from "../../src/compromised/TrustfulOracleInitializer.sol";
 import {Exchange} from "../../src/compromised/Exchange.sol";
 import {DamnValuableNFT} from "../../src/DamnValuableNFT.sol";
-//
+
 contract CompromisedChallenge is Test {
     address deployer = makeAddr("deployer");
     address player = makeAddr("player");
