@@ -37,5 +37,6 @@ contract AttackPuppet {
     }
 
     receive() external payable {
+        
     }
 }

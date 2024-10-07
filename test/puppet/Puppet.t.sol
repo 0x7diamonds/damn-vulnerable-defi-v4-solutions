@@ -94,7 +94,7 @@ contract PuppetChallenge is Test {
      */
     function test_puppet() public checkSolvedByPlayer {
 
-        AttackPuppet exploit = new AttackPuppet{value:PLAYER_INITIAL_ETH_BALANCE}(
+          AttackPuppet exploit = new AttackPuppet{value:PLAYER_INITIAL_ETH_BALANCE}(
             token,
             lendingPool,
             uniswapV1Exchange,
