@@ -98,7 +98,7 @@ contract PuppetV2Challenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_puppetV2() public checkSolvedByPlayer {
-        // create path for UniswapV2
+        // create path for UniswapV2, swap from token x to token y
        address[] memory path = new address[](2);
        path[0] = address(token);
        path[1] = address(weth);
