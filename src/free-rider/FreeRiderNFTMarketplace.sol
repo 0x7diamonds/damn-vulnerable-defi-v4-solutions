@@ -93,7 +93,8 @@ contract FreeRiderNFTMarketplace is ReentrancyGuard {
         if (priceToPay == 0) {
             revert TokenNotOffered(tokenId);
         }
-
+        // @audit-info msg.value remains constant during 6 transactions even if ether is transfered out from the 1st transaction
+        // @audit-issue that means we can buy all 6 NFTs with just 15 ethers
         if (msg.value < priceToPay) {
             revert InsufficientPayment();
         }
