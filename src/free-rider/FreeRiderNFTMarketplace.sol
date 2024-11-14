@@ -18,7 +18,7 @@ contract FreeRiderNFTMarketplace is ReentrancyGuard {
     event NFTOffered(address indexed offerer, uint256 tokenId, uint256 price);
     event NFTBought(address indexed buyer, uint256 tokenId, uint256 price);
 
-    error InvalidPricesAmount();
+    error InvalidPricesAmount(); 
     error InvalidTokensAmount();
     error InvalidPrice();
     error CallerNotOwner(uint256 tokenId);
