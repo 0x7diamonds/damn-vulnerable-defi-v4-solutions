@@ -93,6 +93,7 @@ contract UnstoppableChallenge is Test {
      */
     //@audit-ok
     function test_unstoppable() public checkSolvedByPlayer {
+       // @audit-ok transfer any DVT directly to the vault
        require(token.transfer(address(vault), 1));
     }
 
