@@ -23,4 +23,13 @@ contract DamnValuableNFT is ERC721, ERC721Burnable, OwnableRoles {
         _safeMint(to, tokenId);
         ++nonce;
     }
+
+    function safeTransferFrom(
+        address from,
+        address to,
+        uint256 tokenId,
+        bytes memory _data
+    ) public virtual override(ERC721) {
+        ERC721.safeTransferFrom(from, to, tokenId, _data);
+    }
 }

@@ -82,9 +82,11 @@ contract UnstoppableVault is IERC3156FlashLender, ReentrancyGuard, Owned, ERC462
         if (amount == 0) revert InvalidAmount(0); // fail early
         if (address(asset) != _token) revert UnsupportedCurrency(); // enforce ERC3156 requirement
         uint256 balanceBefore = totalAssets();
+        // @audit why? to make sure supply is well-calculated (the money the pool has must always be deposited by users) before any transaction
+        // @audit how totalSupply is altered? By calling deposit, withdraw => _mint, _burn function
+        // @audit exploit: make any divergence between totalSupply and totalAssets => directly transfer to the vault
+        // @audit => Bypassing deposits function (not using _mint in order to not increase totaSupply)
         if (convertToShares(totalSupply) != balanceBefore) revert InvalidBalance(); // enforce ERC4626 requirement
-        // @audit-issue safeTransfer will cause inflation
-        // transfer tokens out + execute callback on receiver
         ERC20(_token).safeTransfer(address(receiver), amount);
 
         // callback must return magic value, otherwise assume it failed

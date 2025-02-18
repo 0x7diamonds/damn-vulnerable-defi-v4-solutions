@@ -93,7 +93,7 @@ contract UnstoppableChallenge is Test {
      */
     //@audit-ok
     function test_unstoppable() public checkSolvedByPlayer {
-        token.transfer(address(vault), 10);
+       require(token.transfer(address(vault), 1));
     }
 
     /**
