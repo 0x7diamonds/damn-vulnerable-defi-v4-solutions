@@ -53,7 +53,8 @@ contract TrusterChallenge is Test {
      */
     // @audit-info Done
     function test_truster() public checkSolvedByPlayer {
-
+        AttackTruster attacker = new AttackTruster(token, pool, recovery);
+        attacker.attack();
     }
 
     /**
