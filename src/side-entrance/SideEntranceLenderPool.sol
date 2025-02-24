@@ -22,7 +22,7 @@ contract SideEntranceLenderPool {
         }
         emit Deposit(msg.sender, msg.value);
     }
-
+    // @audit => Thoughts: Can we `flashloan` 1000 eth and then call `withdraw` function? Any reverts?
     function withdraw() external {
         uint256 amount = balances[msg.sender];
 
