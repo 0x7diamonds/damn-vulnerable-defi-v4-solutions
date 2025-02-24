@@ -12,3 +12,4 @@ Possible ways to exploit the contract:
     - Using `approve` like challenge 3
 - Via `flashloan` function
     - Front-running attack
+=> Thoughts: Can we `flashloan` 1000 eth and then call `withdraw` function? Any reverts?
