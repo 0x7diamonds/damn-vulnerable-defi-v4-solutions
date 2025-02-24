@@ -13,3 +13,7 @@ Possible ways to exploit the contract:
 - Via `flashloan` function
     - Front-running attack
 => Thoughts: Can we `flashloan` 1000 eth and then call `withdraw` function? Any reverts?
+=> Attacking Phases: 
+    user flashloan 1000 eth => the pool has 0 eth => flashloan calls execute
+    execute calls deposits, depositing 1000 eth => the pool has 1000 eth like the initial state => passing the flashloan check
+    user tricked the pool that he has deposited 1000 eth => having the permission to withdraw them.

