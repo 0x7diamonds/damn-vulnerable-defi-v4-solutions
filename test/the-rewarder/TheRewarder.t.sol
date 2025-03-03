@@ -179,14 +179,14 @@ contract TheRewarderChallenge is Test {
                     batchNumber: 0,
                     amount: ATTACKER_DVT_CLAIM_AMOUNT,
                     tokenIndex: 0,
-                    proof: merkle.getProof(dvtLeaves, i)
+                    proof: merkle.getProof(dvtLeaves, 188)
                 });
             } else {
                 claims[i] = Claim({
                     batchNumber: 0,
                     amount: ATTACKER_WETH_CLAIM_AMOUNT,
                     tokenIndex: 1,
-                    proof: merkle.getProof(wethLeaves, i - dvtTxCount)
+                    proof: merkle.getProof(wethLeaves, 188)
                 });
             }
         }
