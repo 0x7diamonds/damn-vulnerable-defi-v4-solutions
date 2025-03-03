@@ -181,6 +181,13 @@ contract TheRewarderChallenge is Test {
                     tokenIndex: 0,
                     proof: merkle.getProof(dvtLeaves, i)
                 });
+            } else {
+                claims[i] = Claim({
+                    batchNumber: 0,
+                    amount: ATTACKER_WETH_CLAIM_AMOUNT,
+                    tokenIndex: 1,
+                    proof: merkle.getProof(wethLeaves, i - dvtTxCount)
+                });
             }
         }
     }
