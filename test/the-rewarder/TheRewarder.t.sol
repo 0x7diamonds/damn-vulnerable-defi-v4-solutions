@@ -151,7 +151,7 @@ contract TheRewarderChallenge is Test {
     // references: https://medium.com/@opensiddhu993/challenge-5-the-rewarder-damn-vulnerable-defi-v4-lazy-solutions-series-a08e32b84df9
         uint ATTACKER_DVT_CLAIM_AMOUNT = 11524763827831882;
         uint ATTACKER_WETH_CLAIM_AMOUNT = 1171088749244340;
-        
+
         // Finding the attackers' address
         console.log('address(player)');
         console.log(address(player));
@@ -160,6 +160,22 @@ contract TheRewarderChallenge is Test {
         uint256 dvtTxCount = TOTAL_DVT_DISTRIBUTION_AMOUNT / ATTACKER_DVT_CLAIM_AMOUNT;
         uint256 wethTxCount = TOTAL_WETH_DISTRIBUTION_AMOUNT / ATTACKER_WETH_CLAIM_AMOUNT;
         uint256 totalTxCount = dvtTxCount + wethTxCount;
+
+        // Load attacker's merkle leaves
+        bytes32[] memory dvtLeaves = _loadRewards("/test/the-rewarder/dvt-distribution.json");
+        bytes32[] memory wethLeaves = _loadRewards("/test/the-rewarder/weth-distribution.json");
+
+        // Initialize token to claim
+        IERC20[] memory tokensToClaim = new IERC20[](2);
+        tokensToClaim[0] = IERC20(address(dvt));
+        tokensToClaim[1] = IERC20(address(weth));
+
+        // Construct Claims
+        Claim[] memory claims = new Claim[](totalTxCount);
+        // Attacking 
+        for (uint256 i = 0; i < totalTxCount; i++) {
+            
+        }
     }
 
     /**
