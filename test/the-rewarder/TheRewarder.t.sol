@@ -148,6 +148,7 @@ contract TheRewarderChallenge is Test {
      * CODE YOUR SOLUTION HERE
      */
     function test_theRewarder() public checkSolvedByPlayer {
+    // references: https://medium.com/@opensiddhu993/challenge-5-the-rewarder-damn-vulnerable-defi-v4-lazy-solutions-series-a08e32b84df9
         uint PLAYER_DVT_CLAIM_AMOUNT = 11524763827831882;
         uint PLAYER_WETH_CLAIM_AMOUNT = 1171088749244340;
 
