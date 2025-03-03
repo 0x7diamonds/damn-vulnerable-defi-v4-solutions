@@ -176,9 +176,11 @@ contract TheRewarderChallenge is Test {
         for (uint256 i = 0; i < totalTxCount; i++) {
             if (i < dvtTxCount) {
                 claims[i] = Claim({
-                    batchNumber:0;
-                    
-                })
+                    batchNumber: 0,
+                    amount: ATTACKER_DVT_CLAIM_AMOUNT,
+                    tokenIndex: 0,
+                    proof: merkle.getProof(dvtLeaves, i)
+                });
             }
         }
     }
