@@ -174,7 +174,12 @@ contract TheRewarderChallenge is Test {
         Claim[] memory claims = new Claim[](totalTxCount);
         // Attacking 
         for (uint256 i = 0; i < totalTxCount; i++) {
-            
+            if (i < dvtTxCount) {
+                claims[i] = Claim({
+                    batchNumber:0;
+                    
+                })
+            }
         }
     }
 
