@@ -62,6 +62,8 @@ contract AttackSelfie {
     }
 
     function attackExecution() external returns (bool) {
+        console.log("actionId");
+        console.log(actionId);
         bytes memory result = governance.executeAction(actionId);
         return true;   
     } 
