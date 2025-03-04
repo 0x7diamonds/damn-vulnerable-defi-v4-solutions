@@ -64,7 +64,7 @@ contract SelfieChallenge is Test {
      */
     function test_selfie() public checkSolvedByPlayer {
         AttackSelfie attacker = new AttackSelfie(address(pool), address(governance), address(token));
-        attacker.attackSetup(recovery);
+        require(attacker.attackSetup(recovery));
         vm.warp(block.timestamp + 2);
         require(attacker.attackExecution());
     }

