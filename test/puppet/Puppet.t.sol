@@ -94,15 +94,6 @@ contract PuppetChallenge is Test {
      */
     function test_puppet() public checkSolvedByPlayer {
 
-          AttackPuppet exploit = new AttackPuppet{value:PLAYER_INITIAL_ETH_BALANCE}(
-            token,
-            lendingPool,
-            uniswapV1Exchange,
-            recovery
-        );
-
-        token.transfer(address(exploit), PLAYER_INITIAL_TOKEN_BALANCE);
-        exploit.attack(POOL_INITIAL_TOKEN_BALANCE);
     }
 
     // Utility function to calculate Uniswap prices
